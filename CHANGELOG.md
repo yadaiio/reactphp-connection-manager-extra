@@ -171,7 +171,7 @@
 ## 0.3.0 (2013-06-24)
 
 * BC break: Switch from (deprecated) `clue/connection-manager` to `react/socket-client`
-  and thus replace each occurance of `getConnect($host, $port)` with `create($host, $port)`
+  and thus replace each occurrence of `getConnect($host, $port)` with `create($host, $port)`
   (#1)
   
 * Fix: Timeouts in `ConnectionManagerTimeout` now actually work

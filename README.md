@@ -36,7 +36,7 @@ Let's take these projects to the next level together! 🚀
 
 ## Introduction
 
-If you're not already familar with [react/socket](https://github.com/reactphp/socket),
+If you're not already familiar with [react/socket](https://github.com/reactphp/socket),
 think of it as an async (non-blocking) version of [`fsockopen()`](https://www.php.net/manual/en/function.fsockopen.php)
 or [`stream_socket_client()`](https://www.php.net/manual/en/function.stream-socket-client.php).
 I.e. before you can send and receive data to/from a remote server, you first have to establish a connection - which
@@ -53,10 +53,9 @@ $connector->connect('www.google.com:80')->then(function ($stream) {
     echo 'connection successfully established';
     $stream->write("GET / HTTP/1.0\r\nHost: www.google.com\r\n\r\n");
     $stream->end();
-}, function ($exception) {
-    echo 'connection attempt failed: ' . $exception->getMessage();
+}, function (Exception $e) {
+    echo 'Error: ' . $e->getMessage() . PHP_EOL;
 });
-
 ```
 
 Because everything uses the same simple API, the resulting `Connector` classes can be easily interchanged
@@ -87,6 +86,8 @@ $connectorRepeater = new ConnectionManagerRepeat($connector, 3);
 $connectorRepeater->connect('www.google.com:80')->then(function ($stream) {
     echo 'connection successfully established';
     $stream->close();
+}, function (Exception $e) {
+    echo 'Error: ' . $e->getMessage() . PHP_EOL;
 });
 ```
 
